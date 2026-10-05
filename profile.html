@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GUAOLZUT | Profile</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* =========================
+       BODY
+    ========================= */
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-family: 'Rajdhani', sans-serif;
+      color: white;
+
+      background: #080808;
+
+      overflow: hidden;
+    }
+
+    /* =========================
+       BLURRED BACKGROUND
+    ========================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+
+      inset: -25px;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.58),
+          rgba(0,0,0,.58)
+        ),
+        url("./images/background.gif");
+
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      filter: blur(10px);
+
+      transform: scale(1.05);
+
+      z-index: 0;
+    }
+
+    /* =========================
+       EXTRA DARK OVERLAY
+    ========================= */
+
+    body::after {
+      content: "";
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,.15);
+
+      z-index: 1;
+
+      pointer-events: none;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    #content {
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+    /* =========================
+       SNOW
+    ========================= */
+
+    #snow {
+      position: fixed;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      pointer-events: none;
+
+      z-index: 10;
+    }
+
+    /* =========================
+       PROFILE
+    ========================= */
+
+    .profile {
+      position: relative;
+
+      z-index: 2;
+
+      width: min(458px, 95vw);
+
+      min-height: 680px;
+
+      margin: 0 auto;
+
+      padding: 0 25px 30px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      text-align: center;
+
+      background: rgba(15,15,15,.88);
+
+      border: 1px solid rgba(255,255,255,.3);
+
+      border-radius: 15px;
+
+      backdrop-filter: blur(8px);
+
+      box-shadow:
+        0 0 25px rgba(0,0,0,.5),
+        0 0 60px rgba(0,0,0,.35);
+
+      overflow: hidden;
+    }
+
+    /* =========================
+       PROFILE IMAGE
+    ========================= */
+
+    .avatar {
+      display: block;
+
+      width: calc(100% + 50px);
+
+      height: 400px;
+
+      max-width: none;
+
+      object-fit: cover;
+
+      object-position: center;
+
+      border-radius: 0;
+
+      border: none;
+
+      box-shadow: none;
+
+      cursor: pointer;
+
+      flex-shrink: 0;
+
+      margin: 0 -25px;
+    }
+
+    /* =========================
+       NAME
+    ========================= */
+
+    h1 {
+      width: 100%;
+
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: 20px;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      line-height: 1.6;
+
+      margin-top: auto;
+
+      margin-bottom: 12px;
+
+      overflow-wrap: anywhere;
+
+      flex-shrink: 0;
+
+      text-shadow:
+        0 0 8px rgba(255,255,255,.15);
+    }
+
+    /* =========================
+       ROLE
+    ========================= */
+
+    .role {
+      display: inline-block;
+
+      padding: 8px 15px;
+
+      margin-bottom: 12px;
+
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      color: var(--member-color);
+
+      background: color-mix(
+        in srgb,
+        var(--member-color) 12%,
+        #111 88%
+      );
+
+      border: 1px solid var(--member-color);
+
+      border-radius: 5px;
+
+      text-shadow:
+        0 0 8px color-mix(
+          in srgb,
+          var(--member-color) 45%,
+          transparent
+        );
+
+      box-shadow:
+        0 0 10px color-mix(
+          in srgb,
+          var(--member-color) 18%,
+          transparent
+        );
+
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+      position: absolute;
+
+      top: 15px;
+
+      right: 15px;
+
+      color: #50c878;
+
+      margin: 0;
+
+      padding: 6px 10px;
+
+      font-family: 'Rajdhani', sans-serif;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      letter-spacing: .5px;
+
+      background: rgba(10,40,25,.75);
+
+      border: 1px solid #50c878;
+
+      border-radius: 6px;
+
+      box-shadow:
+        0 0 10px rgba(80,200,120,.25);
+
+      z-index: 5;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .facebook,
+    .back {
+      display: block;
+
+      width: 100%;
+
+      padding: 12px;
+
+      margin-top: 10px;
+
+      color: white;
+
+      text-decoration: none;
+
+      font-family: 'Rajdhani', sans-serif;
+
+      font-size: 16px;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      border-radius: 7px;
+
+      transition: .2s;
+
+      flex-shrink: 0;
+    }
+
+    /* FACEBOOK */
+
+    .facebook {
+      background: #1877f2;
+
+      margin-top: 0;
+    }
+
+    /* BACK */
+
+    .back {
+      background: #333;
+
+      border: 1px solid #777;
+
+      margin-top: 10px;
+    }
+
+    /* HOVER */
+
+    .facebook:hover,
+    .back:hover {
+      filter: brightness(1.2);
+
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       NOT FOUND
+    ========================= */
+
+    .not-found {
+      position: relative;
+
+      z-index: 2;
+
+      width: min(500px, 90%);
+
+      text-align: center;
+
+      font-family: 'Kanit', sans-serif;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 500px) {
+
+      body {
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        overflow: hidden;
+      }
+
+      #content {
+        width: 100%;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+      }
+
+      .profile {
+        width: 95vw;
+
+        min-height: 680px;
+
+        margin: 0 auto;
+
+        padding: 0 20px 25px;
+      }
+
+      .avatar {
+        width: calc(100% + 40px);
+
+        height: 400px;
+
+        max-width: none;
+
+        margin: 0 -20px;
+
+        object-fit: cover;
+
+        object-position: center;
+
+        border-radius: 0;
+      }
+
+      h1 {
+        font-size: 17px;
+
+        margin-top: auto;
+
+        margin-bottom: 12px;
+
+        letter-spacing: .5px;
+      }
+
+      .role {
+        font-size: 9px;
+      }
+
+      .status {
+        top: 12px;
+
+        right: 12px;
+
+        font-size: 13px;
+
+        padding: 5px 9px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <canvas id="snow"></canvas>
+
+  <main id="content"></main>
+
+
+  <script>
+
+    /* =========================
+       MEMBERS
+    ========================= */
+
+    const members = [
+
+      {
+        id: 1,
+        name: "Thur Soybad",
+        role: "THE BOSS",
+        status: "ONLINE",
+        image: "./images/thur.jpg",
+        color: "#ff3333",
+        facebook: "https://www.facebook.com/thur.rofair"
+      },
+
+      {
+        id: 2,
+        name: "Mac Dektaii",
+        role: "THE BOSS",
+        status: "ONLINE",
+        image: "./images/mac.jpg",
+        color: "#ff3333",
+        facebook: "https://www.facebook.com/"
+      },
+
+      {
+        id: 3,
+        name: "Khai Tun",
+        role: "MEMBER",
+        status: "ONLINE",
+        image: "./images/khai.jpg",
+        color: "#a855f7",
+        facebook: "https://www.facebook.com/"
+      },
+
+      {
+        id: 4,
+        name: "Member 4",
+        role: "MEMBER",
+        status: "ONLINE",
+        image: "./images/kittipong.jpg",
+        color: "#00ff88",
+        facebook: "https://www.facebook.com/"
+      },
+
+      {
+        id: 5,
+        name: "Member 5",
+        role: "MEMBER",
+        status: "ONLINE",
+        image: "./images/anan.jpg",
+        color: "#ffaa00",
+        facebook: "https://www.facebook.com/"
+      }
+
+    ];
+
+
+    /* =========================
+       GET MEMBER ID
+    ========================= */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const memberId =
+      Number(
+        params.get("id")
+      );
+
+    const member =
+      members.find(
+        item =>
+          item.id === memberId
+      );
+
+    const content =
+      document.getElementById(
+        "content"
+      );
+
+
+    /* =========================
+       DISPLAY PROFILE
+    ========================= */
+
+    if (member) {
+
+      content.innerHTML = `
+
+        <section
+          class="profile"
+          style="--member-color: ${member.color};"
+        >
+
+          <img
+            class="avatar"
+            src="${member.image}"
+            alt="${member.name}"
+          >
+
+          <h1>
+            ${member.name}
+          </h1>
+
+          <div class="role">
+            ${member.role}
+          </div>
+
+          <div class="status">
+            ● ${member.status}
+          </div>
+
+          <a
+            class="facebook"
+            href="${member.facebook}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            FACEBOOK
+          </a>
+
+          <a
+            class="back"
+            href="index.html"
+          >
+            ← BACK TO MEMBERS
+          </a>
+
+        </section>
+
+      `;
+
+    }
+
+    else {
+
+      content.innerHTML = `
+
+        <section class="not-found">
+
+          <h2>
+            ไม่พบข้อมูลสมาชิก
+          </h2>
+
+          <p>
+            กรุณากลับไปเลือกสมาชิกอีกครั้ง
+          </p>
+
+          <a
+            class="back"
+            href="index.html"
+          >
+            กลับหน้าแรก
+          </a>
+
+        </section>
+
+      `;
+
+    }
+
+
+    /* =========================
+       SNOW EFFECT
+    ========================= */
+
+    const canvas =
+      document.getElementById(
+        "snow"
+      );
+
+    const ctx =
+      canvas.getContext("2d");
+
+    let flakes = [];
+
+
+    function resizeSnow() {
+
+      canvas.width =
+        window.innerWidth;
+
+      canvas.height =
+        window.innerHeight;
+
+      flakes = Array.from(
+        { length: 100 },
+        () => ({
+
+          x:
+            Math.random() *
+            canvas.width,
+
+          y:
+            Math.random() *
+            canvas.height,
+
+          r:
+            Math.random() *
+            3 + 1,
+
+          speed:
+            Math.random() *
+            1.5 + 0.5,
+
+          drift:
+            Math.random() *
+            1 - 0.5
+
+        })
+      );
+
+    }
+
+
+    function animateSnow() {
+
+      ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      ctx.fillStyle =
+        "rgba(255,255,255,.8)";
+
+      ctx.beginPath();
+
+
+      flakes.forEach(
+        flake => {
+
+          ctx.moveTo(
+            flake.x,
+            flake.y
+          );
+
+          ctx.arc(
+            flake.x,
+            flake.y,
+            flake.r,
+            0,
+            Math.PI * 2
+          );
+
+
+          flake.y +=
+            flake.speed;
+
+          flake.x +=
+            flake.drift;
+
+
+          if (
+            flake.y >
+            canvas.height
+          ) {
+
+            flake.y = -5;
+
+            flake.x =
+              Math.random() *
+              canvas.width;
+
+          }
+
+
+          if (
+            flake.x >
+            canvas.width
+          ) {
+
+            flake.x = 0;
+
+          }
+
+
+          if (
+            flake.x < 0
+          ) {
+
+            flake.x =
+              canvas.width;
+
+          }
+
+        }
+      );
+
+
+      ctx.fill();
+
+      requestAnimationFrame(
+        animateSnow
+      );
+
+    }
+
+
+    window.addEventListener(
+      "resize",
+      resizeSnow
+    );
+
+    resizeSnow();
+
+    animateSnow();
+
+  </script>
+
+</body>
+</html>

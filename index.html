@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GUAOLZUT | Members</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Rajdhani', sans-serif;
+      color: white;
+
+      background:
+        #080808
+        url("./images/background.gif")
+        center/cover
+        fixed
+        no-repeat;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      z-index: 0;
+    }
+
+    /* =========================
+       CONTAINER
+    ========================= */
+
+    .container {
+      position: relative;
+      z-index: 2;
+
+      width: min(1000px, 92%);
+      margin: auto;
+      padding: 45px 0;
+
+      text-align: center;
+    }
+
+    /* =========================
+       GUAOLZUT
+    ========================= */
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: clamp(28px, 5vw, 42px);
+
+      font-weight: 800;
+      letter-spacing: 5px;
+
+      margin: 0 0 15px;
+
+      color: white;
+
+      text-shadow:
+        0 0 8px rgba(255,255,255,.7),
+        0 0 20px rgba(255,255,255,.25);
+    }
+
+    /* =========================
+       MEMBER LIST
+    ========================= */
+
+    .subtitle {
+      font-family: 'Rajdhani', sans-serif;
+
+      font-size: 16px;
+      font-weight: 600;
+
+      color: #aaa;
+
+      margin-bottom: 25px;
+
+      letter-spacing: 4px;
+    }
+
+    /* =========================
+       MEMBER COUNT
+    ========================= */
+
+    .member-counts {
+      display: flex;
+
+      justify-content: center;
+      align-items: stretch;
+
+      gap: 14px;
+
+      width: 100%;
+      max-width: 500px;
+
+      margin: 0 auto 28px;
+    }
+
+    .count-box {
+      flex: 1;
+
+      min-height: 78px;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
+      background: rgba(8,8,8,.75);
+
+      border: 1px solid var(--count-color);
+      border-radius: 9px;
+
+      backdrop-filter: blur(8px);
+
+      transition: .25s;
+    }
+
+    .count-box:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 0 15px color-mix(
+          in srgb,
+          var(--count-color) 35%,
+          transparent
+        );
+    }
+
+    .count-number {
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: 23px;
+      font-weight: 800;
+
+      line-height: 1;
+
+      color: var(--count-color);
+
+      margin-bottom: 6px;
+
+      text-shadow:
+        0 0 8px color-mix(
+          in srgb,
+          var(--count-color) 45%,
+          transparent
+        );
+    }
+
+    .count-title {
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: 1.5px;
+
+      color: var(--count-color);
+    }
+
+    /* =========================
+       SECTION TITLE
+       THE BOSS / MEMBER
+    ========================= */
+
+    .member-section {
+      width: 100%;
+    }
+
+    .section-title {
+      position: relative;
+
+      width: 100%;
+      max-width: 850px;
+
+      margin: 25px auto 13px;
+
+      padding: 8px 15px;
+
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: 18px;
+      font-weight: 800;
+
+      letter-spacing: 2.5px;
+
+      text-align: center;
+
+      background: transparent;
+
+      border: none;
+      box-shadow: none;
+
+      backdrop-filter: none;
+
+      color: #fff;
+    }
+
+    /* =========================
+       เส้นหัวข้อ
+    ========================= */
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+
+      position: absolute;
+
+      top: 50%;
+
+      width: 25%;
+      height: 1px;
+
+      transform: translateY(-50%);
+    }
+
+    .section-title::before {
+      left: 10%;
+
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255,255,255,.25) 25%,
+        rgba(255,255,255,.8) 75%,
+        #fff 100%
+      );
+    }
+
+    .section-title::after {
+      right: 10%;
+
+      background: linear-gradient(
+        to left,
+        transparent 0%,
+        rgba(255,255,255,.25) 25%,
+        rgba(255,255,255,.8) 75%,
+        #fff 100%
+      );
+    }
+
+    /* =========================
+       สีหัวข้อ
+    ========================= */
+
+    .boss-title {
+      color: #ff3333;
+
+      text-shadow:
+        0 0 7px rgba(255,51,51,.35);
+    }
+
+    .member-title {
+      color: #00aaff;
+
+      text-shadow:
+        0 0 7px rgba(0,170,255,.35);
+    }
+
+    /* =========================
+       MEMBERS
+    ========================= */
+
+    .members {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 13px;
+
+      width: 100%;
+      max-width: 850px;
+
+      margin: 0 auto;
+    }
+
+    /* =========================
+       MEMBER CARD
+    ========================= */
+
+    .member {
+      display: flex;
+
+      flex-direction: row;
+
+      align-items: center;
+
+      gap: 15px;
+
+      width: 100%;
+
+      min-height: 115px;
+
+      padding: 14px 18px;
+
+      text-decoration: none;
+
+      color: white;
+
+      background: linear-gradient(
+        to right,
+
+        color-mix(
+          in srgb,
+          var(--member-color) 55%,
+          #000 45%
+        ) 0%,
+
+        color-mix(
+          in srgb,
+          var(--member-color) 25%,
+          #000 75%
+        ) 40%,
+
+        #080808 100%
+      );
+
+      border: 1px solid var(--member-color);
+
+      border-radius: 9px;
+
+      transition: .25s;
+
+      text-align: left;
+
+      backdrop-filter: blur(8px);
+
+      overflow: hidden;
+    }
+
+    .member:hover {
+      transform: translateY(-3px);
+
+      border-color: var(--member-color);
+
+      box-shadow:
+        0 0 16px color-mix(
+          in srgb,
+          var(--member-color) 35%,
+          transparent
+        );
+    }
+
+    /* =========================
+       ROLE
+       THE BOSS / MEMBER ในรายชื่อ
+    ========================= */
+
+    .role {
+      min-width: 90px;
+
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      line-height: 1.4;
+
+      letter-spacing: .5px;
+
+      color: #fff;
+
+      text-align: center;
+
+      white-space: nowrap;
+
+      flex-shrink: 0;
+
+      text-shadow:
+        0 0 6px rgba(255,255,255,.25);
+    }
+
+    /* =========================
+       AVATAR
+    ========================= */
+
+    .avatar {
+      width: 68px;
+      height: 68px;
+
+      object-fit: cover;
+
+      border-radius: 8px;
+
+      border: none;
+
+      flex-shrink: 0;
+
+      transition: .25s;
+    }
+
+    .member:hover .avatar {
+      border: none;
+      box-shadow: none;
+    }
+
+    /* =========================
+       INFO
+    ========================= */
+
+    .info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .name {
+      font-family: 'Orbitron', sans-serif;
+
+      font-size: 15px;
+
+      font-weight: 700;
+
+      letter-spacing: .3px;
+
+      color: white;
+
+      overflow-wrap: anywhere;
+    }
+
+    .status {
+      margin-top: 4px;
+
+      font-family: 'Rajdhani', sans-serif;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      letter-spacing: .7px;
+
+      color: #50c878;
+
+      text-shadow:
+        0 0 5px rgba(80,200,120,.3);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      margin-top: 30px;
+
+      color: #888;
+
+      font-family: 'Rajdhani', sans-serif;
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+      letter-spacing: 1.5px;
+    }
+
+    /* =========================
+       SNOW
+    ========================= */
+
+    #snow {
+      position: fixed;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      pointer-events: none;
+
+      z-index: 1;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: 92%;
+        padding: 35px 0;
+      }
+
+      h1 {
+        font-size: 26px;
+        letter-spacing: 3px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        letter-spacing: 3px;
+        margin-bottom: 22px;
+      }
+
+      .member-counts {
+        gap: 10px;
+        margin-bottom: 23px;
+      }
+
+      .count-box {
+        min-height: 68px;
+      }
+
+      .count-number {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .count-title {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      /* =========================
+         SECTION MOBILE
+      ========================= */
+
+      .section-title {
+        font-size: 15px;
+
+        letter-spacing: 2px;
+
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+        padding: 7px 10px;
+      }
+
+      .section-title::before,
+      .section-title::after {
+        width: 24%;
+      }
+
+      .section-title::before {
+        left: 4%;
+      }
+
+      .section-title::after {
+        right: 4%;
+      }
+
+      /* =========================
+         MEMBERS
+      ========================= */
+
+      .members {
+        gap: 10px;
+      }
+
+      .member {
+        gap: 10px;
+
+        min-height: 92px;
+
+        padding: 10px 12px;
+      }
+
+      /* THE BOSS / MEMBER ในรายชื่อ */
+
+      .role {
+        min-width: 68px;
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        letter-spacing: .3px;
+
+        white-space: nowrap;
+      }
+
+      .avatar {
+        width: 55px;
+        height: 55px;
+
+        border-radius: 7px;
+
+        border: none;
+      }
+
+      .name {
+        font-size: 13px;
+      }
+
+      .status {
+        margin-top: 3px;
+        font-size: 10px;
+      }
+
+      footer {
+        font-size: 9px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <canvas id="snow"></canvas>
+
+  <main class="container">
+
+    <h1>
+      GUAOLZUT
+    </h1>
+
+    <div class="subtitle">
+      MEMBER LIST
+    </div>
+
+    <!-- =========================
+         MEMBER COUNT
+    ========================= -->
+
+    <div class="member-counts">
+
+      <div
+        class="count-box"
+        id="bossBox"
+      >
+
+        <div
+          class="count-number"
+          id="bossCount"
+        >
+          0
+        </div>
+
+        <div class="count-title">
+          THE BOSS
+        </div>
+
+      </div>
+
+      <div
+        class="count-box"
+        id="memberBox"
+      >
+
+        <div
+          class="count-number"
+          id="memberCount"
+        >
+          0
+        </div>
+
+        <div class="count-title">
+          MEMBER
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- =========================
+         MEMBER LIST
+    ========================= -->
+
+    <div class="member-section">
+
+      <div class="section-title boss-title">
+        THE BOSS
+      </div>
+
+      <div
+        class="members"
+        id="bossMembers"
+      ></div>
+
+      <div class="section-title member-title">
+        MEMBER
+      </div>
+
+      <div
+        class="members"
+        id="memberMembers"
+      ></div>
+
+    </div>
+
+    <footer>
+      © GUAOLZUT COMMUNITY
+    </footer>
+
+  </main>
+
+  <script>
+
+    /* =========================
+       ตั้งสีตรงนี้
+    ========================= */
+
+    const countColors = {
+
+      boss: "#ff3333",
+
+      member: "#00aaff"
+
+    };
+
+    /* =========================
+       MEMBERS DATA
+    ========================= */
+
+    const members = [
+
+      {
+        id: 1,
+        name: "Thur Soybad",
+        role: "THE BOSS",
+        status: "ONLINE",
+        image: "./images/thur.jpg",
+        color: "#ff3333"
+      },
+
+      {
+        id: 2,
+        name: "Mac Dektaii",
+        role: "THE BOSS",
+        status: "ONLINE",
+        image: "./images/mac.jpg",
+        color: "#ff3333"
+      },
+
+      {
+        id: 3,
+        name: "Khai Tun",
+        role: "MEMBER",
+        status: "ONLINE",
+        image: "./images/khai.jpg",
+        color: "#00aaff"
+      },
+
+      {
+        id: 4,
+        name: "Member 4",
+        role: "MEMBER",
+        status: "ONLINE",
+        image: "./images/kittipong.jpg",
+        color: "#00aaff"
+      },
+
+      {
+        id: 5,
+        name: "Member 5",
+        role: "MEMBER",
+        status: "ONLINE",
+        image: "./images/anan.jpg",
+        color: "#00aaff"
+      }
+
+    ];
+
+    /* =========================
+       APPLY COUNT COLORS
+    ========================= */
+
+    document
+      .getElementById("bossBox")
+      .style.setProperty(
+        "--count-color",
+        countColors.boss
+      );
+
+    document
+      .getElementById("memberBox")
+      .style.setProperty(
+        "--count-color",
+        countColors.member
+      );
+
+    /* =========================
+       COUNT MEMBERS
+    ========================= */
+
+    const bossCount =
+      members.filter(
+        member =>
+          member.role === "THE BOSS"
+      ).length;
+
+    const normalMemberCount =
+      members.filter(
+        member =>
+          member.role === "MEMBER"
+      ).length;
+
+    document.getElementById(
+      "bossCount"
+    ).textContent = bossCount;
+
+    document.getElementById(
+      "memberCount"
+    ).textContent =
+      normalMemberCount;
+
+    /* =========================
+       MEMBER CONTAINERS
+    ========================= */
+
+    const bossContainer =
+      document.getElementById(
+        "bossMembers"
+      );
+
+    const memberContainer =
+      document.getElementById(
+        "memberMembers"
+      );
+
+    /* =========================
+       CREATE MEMBERS
+    ========================= */
+
+    members.forEach(member => {
+
+      const link =
+        document.createElement("a");
+
+      link.className =
+        "member";
+
+      link.style.setProperty(
+        "--member-color",
+        member.color
+      );
+
+      link.href =
+        `profile.html?id=${member.id}`;
+
+      link.innerHTML = `
+
+        <div class="role">
+          ${member.role}
+        </div>
+
+        <img
+          class="avatar"
+          src="${member.image}"
+          alt="${member.name}"
+        >
+
+        <div class="info">
+
+          <div class="name">
+            ${member.name}
+          </div>
+
+          <div class="status">
+            ● ${member.status}
+          </div>
+
+        </div>
+
+      `;
+
+      if (
+        member.role === "THE BOSS"
+      ) {
+
+        bossContainer.appendChild(
+          link
+        );
+
+      } else {
+
+        memberContainer.appendChild(
+          link
+        );
+
+      }
+
+    });
+
+    /* =========================
+       SNOW EFFECT
+       100 เกล็ด
+    ========================= */
+
+    const canvas =
+      document.getElementById(
+        "snow"
+      );
+
+    const ctx =
+      canvas.getContext("2d");
+
+    let flakes = [];
+
+    function resizeSnow() {
+
+      canvas.width =
+        window.innerWidth;
+
+      canvas.height =
+        window.innerHeight;
+
+      flakes = Array.from(
+
+        { length: 100 },
+
+        () => ({
+
+          x:
+            Math.random() *
+            canvas.width,
+
+          y:
+            Math.random() *
+            canvas.height,
+
+          r:
+            Math.random() *
+            3 + 1,
+
+          speed:
+            Math.random() *
+            1.5 + 0.5,
+
+          drift:
+            Math.random() *
+            1 - 0.5
+
+        })
+
+      );
+
+    }
+
+    function animateSnow() {
+
+      ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      ctx.fillStyle =
+        "rgba(255,255,255,.8)";
+
+      ctx.beginPath();
+
+      flakes.forEach(flake => {
+
+        ctx.moveTo(
+          flake.x,
+          flake.y
+        );
+
+        ctx.arc(
+          flake.x,
+          flake.y,
+          flake.r,
+          0,
+          Math.PI * 2
+        );
+
+        flake.y +=
+          flake.speed;
+
+        flake.x +=
+          flake.drift;
+
+        if (
+          flake.y >
+          canvas.height
+        ) {
+
+          flake.y = -5;
+
+          flake.x =
+            Math.random() *
+            canvas.width;
+
+        }
+
+        if (
+          flake.x >
+          canvas.width
+        ) {
+
+          flake.x = 0;
+
+        }
+
+        if (
+          flake.x < 0
+        ) {
+
+          flake.x =
+            canvas.width;
+
+        }
+
+      });
+
+      ctx.fill();
+
+      requestAnimationFrame(
+        animateSnow
+      );
+
+    }
+
+    window.addEventListener(
+      "resize",
+      resizeSnow
+    );
+
+    resizeSnow();
+    animateSnow();
+
+  </script>
+
+</body>
+</html>
