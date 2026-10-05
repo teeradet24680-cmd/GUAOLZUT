@@ -6,6 +6,8 @@
 
   <title>GUAOLZUT | Profile</title>
 
+  <link rel="icon" type="image/png" href="./images/GZ.png">
+
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -460,7 +462,6 @@
 
   <main id="content"></main>
 
-
   <script>
 
     /* =========================
@@ -482,21 +483,21 @@
       {
         id: 2,
         name: "Mac Dektaii",
-        role: "THE BOSS",
+        role: "LEADER",
         status: "ONLINE",
         image: "./images/mac.jpg",
-        color: "#ff3333",
+        color: "#ffaa00",
         facebook: "https://www.facebook.com/"
       },
 
       {
         id: 3,
-        name: "Khai Tun",
-        role: "MEMBER",
+        name: "Janis Sunflower",
+        role: "THE BOSS",
         status: "ONLINE",
-        image: "./images/khai.jpg",
-        color: "#a855f7",
-        facebook: "https://www.facebook.com/"
+        image: "./images/janis.png",
+        color: "#ff3333",
+        facebook: "https://www.facebook.com/share/14rAh58mr2Q/?mibextid=wwXIfr"
       },
 
       {
@@ -628,155 +629,157 @@
 
     }
 
+/* =========================
+   RESIZE
+========================= */
 
-    /* =========================
-       SNOW EFFECT
-    ========================= */
+function resizeCanvas() {
 
-    const canvas =
-      document.getElementById(
-        "snow"
+  canvas.width =
+    window.innerWidth;
+
+  canvas.height =
+    window.innerHeight;
+
+  createFlakes();
+
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+function animate() {
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  flakes.forEach(
+    flake => {
+
+      ctx.save();
+
+      ctx.globalAlpha =
+        flake.opacity;
+
+      ctx.translate(
+        flake.x,
+        flake.y
       );
 
-    const ctx =
-      canvas.getContext("2d");
-
-    let flakes = [];
-
-
-    function resizeSnow() {
-
-      canvas.width =
-        window.innerWidth;
-
-      canvas.height =
-        window.innerHeight;
-
-      flakes = Array.from(
-        { length: 100 },
-        () => ({
-
-          x:
-            Math.random() *
-            canvas.width,
-
-          y:
-            Math.random() *
-            canvas.height,
-
-          r:
-            Math.random() *
-            3 + 1,
-
-          speed:
-            Math.random() *
-            1.5 + 0.5,
-
-          drift:
-            Math.random() *
-            1 - 0.5
-
-        })
+      ctx.rotate(
+        flake.rotation
       );
+
+
+      ctx.drawImage(
+
+        logo,
+
+        -flake.size / 2,
+        -flake.size / 2,
+
+        flake.size,
+        flake.size
+
+      );
+
+
+      ctx.restore();
+
+
+      /* FALL */
+
+      flake.y +=
+        flake.speed;
+
+
+      /* LEFT / RIGHT */
+
+      flake.x +=
+        flake.drift;
+
+
+      /* ROTATE */
+
+      flake.rotation +=
+        flake.rotationSpeed;
+
+
+      /* RESET */
+
+      if (
+        flake.y >
+        canvas.height + 30
+      ) {
+
+        flake.y = -30;
+
+        flake.x =
+          Math.random() *
+          canvas.width;
+
+      }
+
+
+      /* RIGHT */
+
+      if (
+        flake.x >
+        canvas.width + 30
+      ) {
+
+        flake.x = -30;
+
+      }
+
+
+      /* LEFT */
+
+      if (
+        flake.x < -30
+      ) {
+
+        flake.x =
+          canvas.width + 30;
+
+      }
 
     }
+  );
 
 
-    function animateSnow() {
+  requestAnimationFrame(
+    animate
+  );
 
-      ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-
-      ctx.fillStyle =
-        "rgba(255,255,255,.8)";
-
-      ctx.beginPath();
+}
 
 
-      flakes.forEach(
-        flake => {
+/* =========================
+   START
+========================= */
 
-          ctx.moveTo(
-            flake.x,
-            flake.y
-          );
+logo.onload = () => {
 
-          ctx.arc(
-            flake.x,
-            flake.y,
-            flake.r,
-            0,
-            Math.PI * 2
-          );
+  resizeCanvas();
+
+  animate();
+
+};
 
 
-          flake.y +=
-            flake.speed;
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
 
-          flake.x +=
-            flake.drift;
-
-
-          if (
-            flake.y >
-            canvas.height
-          ) {
-
-            flake.y = -5;
-
-            flake.x =
-              Math.random() *
-              canvas.width;
-
-          }
-
-
-          if (
-            flake.x >
-            canvas.width
-          ) {
-
-            flake.x = 0;
-
-          }
-
-
-          if (
-            flake.x < 0
-          ) {
-
-            flake.x =
-              canvas.width;
-
-          }
-
-        }
-      );
-
-
-      ctx.fill();
-
-      requestAnimationFrame(
-        animateSnow
-      );
-
-    }
-
-
-    window.addEventListener(
-      "resize",
-      resizeSnow
-    );
-
-    resizeSnow();
-
-    animateSnow();
-
-  </script>
+</script>
 
 </body>
 </html>
